@@ -50,6 +50,10 @@ function App() {
       const { token , expired } = response.data;
       // 寫入cookie
       document.cookie = `hexToken=${token}; expired=${new Date(expired)}`;
+
+      // 將token放入axios.headers
+      axios.defaults.headers.common['Authorization'] = token;
+
       getProducts();
       setIsAuth(true);
     }
@@ -70,12 +74,15 @@ function App() {
     }
   }
 
+  
+
   // 初始化網頁，驗證是否授權
   useEffect(() => {
     // 從cookie取token
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/,"$1",);
     // 將token放入axios.headers
     axios.defaults.headers.common['Authorization'] = token;
+
     checkIsLogined();
   },[])
 
