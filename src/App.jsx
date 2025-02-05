@@ -52,7 +52,7 @@ function App() {
       document.cookie = `hexToken=${token}; expired=${new Date(expired)}`;
       getProducts();
       setIsAuth(true);
-    } 
+    }
     catch (error) {
       console.log(error)
     }
@@ -62,6 +62,7 @@ function App() {
   const checkIsLogined = async() => {
     try {
       await axios.post(`${BASE_URL}/api/user/check`)
+      getProducts();
       setIsAuth(true)
     }
     catch (error) {
@@ -75,7 +76,6 @@ function App() {
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/,"$1",);
     // 將token放入axios.headers
     axios.defaults.headers.common['Authorization'] = token;
-    getProducts();
     checkIsLogined();
   },[])
 
