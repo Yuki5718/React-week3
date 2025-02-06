@@ -287,7 +287,10 @@ function App() {
       confirmButtonText: "確認",
       cancelButtonText: "取消"
     }).then((result) => {
-      deleteProduct(product);
+      // isConfirmed為true，才會執行刪除功能
+      if (result.isConfirmed) {
+        deleteProduct(product);
+      }
     });
   }
 
