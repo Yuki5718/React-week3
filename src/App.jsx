@@ -403,12 +403,12 @@ function App() {
                 <div className="row g-3 mb-3">
                   <div className="col-6">
                     <label htmlFor="origin_price" className="form-label">原價</label>
-                    <input name="origin_price" id="origin_price" type="number" className="form-control" placeholder="請輸入原價"
+                    <input name="origin_price" id="origin_price" type="number" min={0} className="form-control" placeholder="請輸入原價"
                       value={tempProduct.origin_price} onChange={handleModalInputChange} />
                   </div>
                   <div className="col-6">
                     <label htmlFor="price" className="form-label">售價</label>
-                    <input name="price" id="price" type="number" className="form-control" placeholder="請輸入售價"
+                    <input name="price" id="price" type="number" min={0} className="form-control" placeholder="請輸入售價"
                       value={tempProduct.price} onChange={handleModalInputChange} />
                   </div>
                 </div>
