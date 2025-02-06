@@ -185,7 +185,7 @@ function App() {
   }
   // 修改副圖
 
-  // 建立產品
+  // 新增產品
   const createProduct = async () => {
     try {
       await axios.post(`${BASE_URL}/api/${API_PATH}/admin/product`, {
@@ -200,7 +200,10 @@ function App() {
         title: "成功建立新的產品",
         icon: "success",
         draggable: true
-      }).then(() => getProducts());
+      }).then(() => {
+        getProducts()
+        handleCloseProductModal();
+      });
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -209,7 +212,7 @@ function App() {
       });
     }
   }
-
+  // 修改產品
   const editProduct = async (product) => {
     const id = product.id;
     try {
@@ -225,7 +228,10 @@ function App() {
         title: "成功更新的產品",
         icon: "success",
         draggable: true
-      }).then(() => getProducts());
+      }).then(() => {
+        getProducts()
+        handleCloseProductModal();
+      });
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -235,7 +241,7 @@ function App() {
       console.log(error)
     }
   }
-
+  
   const handleUpdateProduct = async (product) => {
     switch (modalMode) {
       case "create":
@@ -248,7 +254,6 @@ function App() {
       default:
         break;
     }
-    handleCloseProductModal();
   }
 
   // 刪除產品
